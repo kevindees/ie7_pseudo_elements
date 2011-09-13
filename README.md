@@ -2,11 +2,15 @@
 
 Created by [Kevin Dees](http://kevindees.cc)
 
+Becuase IE7 is going to be around for some time. This script was made to give us just a little pseudo-element support until IE7 goes away.
+
+If you feel you can hep with this project hit me up here or on twitter as @kevindees. Enjoy!
+
 Using
 ======
 - Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
-- iea is for selectors ending in :after
-- ieb is for selectors ending in :before
+- iea is for selectors ending in :after or ::after
+- ieb is for selectors ending in :before or ::before
 - Then add the script to the bottom of your site before the &lt;/body&gt; tag.
 
 Example
@@ -37,7 +41,7 @@ Pros
 ===
 - Content property (is supported)
 - You can use :after and :before for basic enhancement
-- You can use multiple pseudo-element on the same element with castcade (selector specificity not supported yet)
+- You can use CSS Castcading for specificity (selector specificity not supported yet)
 
 Example Site
 ======
