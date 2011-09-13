@@ -2,7 +2,12 @@
 	function set_after(rule, style, content) {
 		if($(rule).hasClass('iea')) {
 			var parent = $(rule).parent();
-			$(parent).find('ieae').css(style);
+			if(content) {
+				$(parent).find('ieae').css(style).html(content);
+			}
+			else {
+				$(parent).find('ieae').css(style);
+			}
 		}
 		else {
 			$(rule).addClass('iea');
@@ -14,7 +19,12 @@
 	function set_before(rule, style, content) {
 		if($(rule).hasClass('ieb')) {
 			var parent = $(rule).parent();
-			$(parent).find('iebe').css(style);
+			if(content) {
+				$(parent).find('iebe').css(style).html(content);
+			}
+			else {
+				$(parent).find('iebe').css(style);
+			}
 		}
 		else {
 			$(rule).addClass('ieb');
