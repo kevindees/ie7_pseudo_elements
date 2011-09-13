@@ -39,8 +39,8 @@ Example Site
 &lt;meta charset="UTF-8"&gt;
 &lt;title&gt;My Site&lt;/title&gt;
 &lt;style type="text/css"&gt;
-.more p:before, ieb { content: ''; background: #f00; width: 10px; height: 10px; display: block; }
-.more p:after, iea { content: ''; background: #ccc; width: 15px; height: 15px; display: block;}
+.more p:before, ieb { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
+.more p:after, iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
 &lt;/style&gt;
 &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
@@ -52,35 +52,7 @@ Example Site
 &nbsp;
 &lt;!--[if IE 7]&gt;
 &lt;script type="text/javascript"&gt;
-(function() {
-function set_after(rule, style) {
-$(rule).parent().append($(document.createElement('ieae')).css(style));
-}
-&nbsp;
-function set_before(rule, style) {
-$(rule).parent().prepend($(document.createElement('iebe')).css(style));
-}
-var css = document.styleSheets;
-for(var i = 0, j = css.length; i &lt; j; i++) {
-var rules = css[i].rules;
-for(var x = 0, y = rules.length; x &lt; y; x++) {
-if(rules[x].selectorText.indexOf("ieb") == 0) {
-var before = x;
-var str = rules[--before].selectorText;
-// next line needs love
-str = /(.+):/.exec(str)[1];
-set_before(str, rules[x].style);
-}
-else if(rules[x].selectorText.indexOf("iea") == 0) {
-var before = x;
-var str = rules[--before].selectorText;
-// next line needs love
-str = /(.+):/.exec(str)[1];
-set_after(str, rules[x].style);
-}
-}
-}
-})();
+// the script goes here
 &lt;/script&gt;
 &lt;![endif]--&gt;
 &lt;/body&gt;
