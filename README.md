@@ -9,7 +9,7 @@ To get things rolling:
 
 - Inclide jQuery.
 - Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
-- Then add the script to the bottom of your site before the </body> tag.
+- Then add the script to the bottom of your site before the &lt;/body&gt; tag.
 
 Example
 ======
