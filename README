@@ -1,4 +1,4 @@
-This is for IE7 only! So, use conditional comments if you can.
+This is for IE7 only! So, use conditional comments.
 
 To get this thing rolling simply use jQuery and add "iea" or "ieb" as a new selector after psudo element in your CSS rule. Then add the script to the bottom of your site before the </body> tag.
 
@@ -22,7 +22,8 @@ Its that easy!
 	}
 </style>
 
-This less rules you use the faster the script runs.
+This less rules you use the faster the script runs. 
+Also, dont use a -> : char outside of the :after or :before for now... fixing it ok. 
 
 Here is an example of a full blown site.
 
@@ -32,26 +33,31 @@ Here is an example of a full blown site.
 	<meta charset="UTF-8">
 	<title></title>
 	<style type="text/css">
-	.more:before, ieb {
+		.more p:before, ieb {
 		content: '';
 		background: #f00;
 		width: 10px;
 		height: 10px;
-		position: absolute;
+		display: block;
 		left: 30px;
 	}
 	
-	.more:after, iea {
+	.more p:after, iea {
 		content: '';
 		background: #ccc;
-		width: 10px;
-		height: 10px;
+		width: 15px;
+		height: 15px;
+		display: block;
+		color: #F00;
 	}
 	</style>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 </head>
 <body>
-	<div class="more">test</div>
+
+<div class="more"><p>test</p></div>
+
+<!--[if IE 7]>
 <script type="text/javascript">
 (function() {
 	function set_after(rule) {
@@ -88,5 +94,6 @@ Here is an example of a full blown site.
 	}
 })();
 </script>
+<![endif]-->
 </body>
 </html>
