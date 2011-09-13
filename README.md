@@ -4,11 +4,9 @@ Created by [Kevin Dees](http://kevindees.cc)
 
 Using
 ======
-
-To get things rolling:
-
-- Include jQuery.
 - Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
+- iea is for selectors ending in :after
+- ieb is for selectors ending in :before
 - Then add the script to the bottom of your site before the &lt;/body&gt; tag.
 
 Example
@@ -23,11 +21,23 @@ Example
 Notes
 ======
 
-- The less CSS rules you make the faster the script runs. 
-- You can't use a -> : char outside of the :after or :before for now
+Basic
+===
+- The less CSS rules you make the faster the script runs
+- This is for IE7 only! IE6 is not worth the pain.
+- Requires jQuery 1.6+
+
+Cons
+===
+- You can't use a -> : char outside of the :after or :before in target selector yet
+- You can use selectors like :hover yet
 - You can't stack pseudo-elements yet
-- This is for IE7 only! So, use conditional comments.
-- Content property (now supported)
+
+Pros
+===
+- Content property (is supported)
+- You can use :after and :before for basic enhancement
+- You can use multiple pseudo-element on the same element with castcade (selector specificity not supported yet)
 
 Example Site
 ======
@@ -39,7 +49,7 @@ Example Site
 &lt;meta charset="UTF-8"&gt;
 &lt;title&gt;My Site&lt;/title&gt;
 &lt;style type="text/css"&gt;
-.more p:before, ieb { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
+.more p:before, ieb, .more p:after, iea { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
 .more p:after, iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
 &lt;/style&gt;
 &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"&gt;&lt;/script&gt;
