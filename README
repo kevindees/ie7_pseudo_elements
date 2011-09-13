@@ -1,0 +1,92 @@
+This is for IE7 only! So, use conditional comments if you can.
+
+To get this thing rolling simply use jQuery and add "iea" or "ieb" as a new selector after psudo element in your CSS rule. Then add the script to the bottom of your site before the </body> tag.
+
+Its that easy!
+
+<style type="text/css">
+	.more:before, ieb {
+		content: '';
+		background: #f00;
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		left: 30px;
+	}
+	
+	.more:after, iea {
+		content: '';
+		background: #ccc;
+		width: 10px;
+		height: 10px;
+	}
+</style>
+
+This less rules you use the faster the script runs.
+
+Here is an example of a full blown site.
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	.more:before, ieb {
+		content: '';
+		background: #f00;
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		left: 30px;
+	}
+	
+	.more:after, iea {
+		content: '';
+		background: #ccc;
+		width: 10px;
+		height: 10px;
+	}
+	</style>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="more">test</div>
+<script type="text/javascript">
+(function() {
+	function set_after(rule) {
+		$('' + rule + '').parent().append(document.createElement('iea'));
+	}
+
+	function set_before(rule) {
+		$('' + rule + '').parent().prepend(document.createElement('ieb'));
+	}
+	
+	var css = document.styleSheets;
+	for(var i = 0, j = css.length; i < j; i++) {
+		var rules = css[i].rules;
+		// alert('in style ' + i);
+		for(var x = 0, y = rules.length; x < y; x++) {
+			// alert('in rule ' + rules[x]);
+			if(rules[x].selectorText.indexOf("ieb") == 0) {
+				var before = x;
+				var str = rules[--before].selectorText;
+				str = /(.+):/.exec(str)[1];
+				// alert(str);
+				//alert(rules[x].style);
+				set_before(str);
+			}
+			else if(rules[x].selectorText.indexOf("iea") == 0) {
+				var before = x;
+				var str = rules[--before].selectorText;
+				str = /(.+):/.exec(str)[1];
+				// alert(str);
+				//alert(rules[x].style);
+				set_after(str);
+			}
+		}
+	}
+})();
+</script>
+</body>
+</html>
