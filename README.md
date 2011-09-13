@@ -27,7 +27,7 @@ Notes
 - You can't use a -> : char outside of the :after or :before for now
 - You can't stack pseudo-elements yet
 - This is for IE7 only! So, use conditional comments.
-- Content property doesn't work yet
+- Content property (now supported)
 
 Example Site
 ======
