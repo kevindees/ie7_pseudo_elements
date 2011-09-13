@@ -7,7 +7,7 @@ Using
 
 To get things rolling:
 
-- Inclide jQuery.
+- Include jQuery.
 - Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
 - Then add the script to the bottom of your site before the &lt;/body&gt; tag.
 
@@ -27,7 +27,7 @@ Notes
 - You can't use a -> : char outside of the :after or :before for now
 - You can't stack pseudo-elements yet
 - This is for IE7 only! So, use conditional comments.
-- Content property doen't work yet
+- Content property doesn't work yet
 
 Example Site
 ======
