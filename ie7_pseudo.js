@@ -1,39 +1,34 @@
 (function() {
-	function set_after(rule, style, content) {
-		if($(rule).hasClass('iea')) {
+
+	function set_element(rule, style, content, relID, iee) {
+		if($(rule).hasClass(iee)) {
 			var parent = $(rule).parent();
 			if(content) {
-				$(parent).find('ieae').css(style).html(content);
+				$(parent).find(iee+'e').css(style).html(content);
 			}
 			else {
-				$(parent).find('ieae').css(style);
+				$(parent).find(iee+'e').css(style);
 			}
 		}
 		else {
-			$(rule).addClass('iea');
-			var ieae = $(document.createElement('ieae')).css(style).append( document.createTextNode(content) );
-			$(rule).after(ieae);	
+			$(rule).addClass(iee);
+			var ieeNew = $(document.createElement(iee+'e')).css(style).append( document.createTextNode(content) );
+			if(iee == 'ieb') {
+				$(rule).before(ieeNew); }
+			else {
+				$(rule).after(ieeNew);
+			}		
 		}
 	}
 
-	function set_before(rule, style, content) {
-		if($(rule).hasClass('ieb')) {
-			var parent = $(rule).parent();
-			if(content) {
-				$(parent).find('iebe').css(style).html(content);
-			}
-			else {
-				$(parent).find('iebe').css(style);
-			}
-		}
-		else {
-			$(rule).addClass('ieb');
-			var iebe = $(document.createElement('iebe')).css(style).append( document.createTextNode(content) );
-			$(rule).before(iebe);		
-		}
+	function find_relIDs(ruleClasses) {
+		var ruleStr = / *((\.)ieid-[0-9])/.exec(ruleClasses);
+		alert(ruleStr)
+		return ruleStr;
 	}
 	
 	var css = document.styleSheets;
+	var relID = 0;
 	for(var i = 0, j = css.length; i < j; i++) {
 		var rules = css[i].rules;
 		for(var x = 0, y = rules.length; x < y; x++) {
@@ -44,7 +39,8 @@
 				ruleStr = /(.+):/.exec(ruleStr)[1];
 				var content = rules[x].style.content;
 				content = content.substring(0, content.length-1).substring(1);
-				set_before(ruleStr, rules[x].style, content);
+				var newRelID = 'ieid-' + relID++;
+				set_element(ruleStr, rules[x].style, content, newRelID, 'ieb');
 			}
 			else if(rules[x].selectorText.indexOf("iea") == 0) {
 				var before = x;
@@ -53,7 +49,8 @@
 				ruleStr = /(.+):/.exec(ruleStr)[1];
 				var content = rules[x].style.content;
 				content = content.substring(0, content.length-1).substring(1);
-				set_after(ruleStr, rules[x].style, content);
+				var newRelID = 'ieid-' + relID++;
+				set_element(ruleStr, rules[x].style, content, newRelID, 'iea');
 			}
 		}
 	}
