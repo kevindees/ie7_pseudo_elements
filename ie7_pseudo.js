@@ -1,6 +1,6 @@
 (function() {
 
-	function set_element(rule, style, content, relID, iee) {
+	function set_element(rule, style, content, newRelID, iee) {
 		if($(rule).hasClass(iee)) {
 			var parent = $(rule).parent();
 			if(content) {
@@ -11,7 +11,10 @@
 			}
 		}
 		else {
-			$(rule).addClass(iee);
+			var bob = $(rule).length;
+			for(q =0; q < bob; q++) {
+				$($(rule)[q]).addClass(iee + ' ' + newRelID + q);
+			}
 			var ieeNew = $(document.createElement(iee+'e')).css(style).append( document.createTextNode(content) );
 			if(iee == 'ieb') {
 				$(rule).before(ieeNew); }
