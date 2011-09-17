@@ -3,15 +3,15 @@
 		if($(rule).hasClass(iee)) {
 			if(content) {
 				if(iee == 'ieb') {
-					$(rule + ' ' + iee + 'e').css(style).html(content); }
+					$(rule + ' > ' + iee + 'e').css(style).html(content); }
 				else {
-					$(rule + ' ' + iee + 'e').css(style).html(content); }
+					$(rule + ' > ' + iee + 'e').css(style).html(content); }
 			}
 			else {
 				if(iee == 'ieb') {
-					$(rule + ' ' + iee + 'e').css(style); }
+					$(rule + ' > ' + iee + 'e').css(style); }
 				else {
-					$(rule + ' ' + iee + 'e').css(style); }
+					$(rule + ' > ' + iee + 'e').css(style); }
 			}
 		}
 		else {
