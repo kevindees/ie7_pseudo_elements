@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html id="crop" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Demo: Pseudo background-crop &mdash; Nicolas Gallagher</title>
+    <meta name="description" content="Crop background image sprites using CSS pseudo-elements and semantic HTML">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+
+    <style rel="stylesheet" type="text/css">
+    /* ------------------------------------------
+CSS BACKGROUND IMAGE HACKS
+by Nicolas Gallagher
+- http://nicolasgallagher.com/css-background-image-hacks/
+
+http://nicolasgallagher.com
+http://twitter.com/necolas
+
+Created: 02 July 2010
+Version: 1.0
+
+Dual licensed under MIT and GNU GPLv2 � Nicolas Gallagher
+------------------------------------------ */
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+== GENERAL STYLES
+** ---------------------------------------------------------------------------------------------------------------------------- */
+
+html, body {padding:0; margin:0; font:1em/1.4 Cambria, Georgia, sans-serif; color:#333; background:#fff;}
+header, hgroup {display:block;}
+a:link, a:visited {border-bottom:1px solid #c55500; color:#c55500; text-decoration:none;}
+a:hover, a:focus, a:active {border:0; color:#fff; background:#c55500;}
+.container {width:540px; padding:0 0 10px; margin:0 auto 30px;}
+.header {border-bottom:1px solid #ddd;}
+.footer {padding:10px 0 30px; border-top:1px solid #ddd; margin-bottom:0; font-size:0.875em;}
+h1 {margin:0.5em 0 0; font-size:2.5em; font-weight:normal; line-height:1.2; text-align:center;}
+h2 {margin:0.5em 0 1.5em; font-size:1.125em; font-weight:normal; text-align:center;}
+p {margin:1em 0; line-height:1.4em;}
+.content p {margin:0 0 1em; font-size:14px; }
+pre {margin:1.4em 0; font-size:12px; line-height:1.4em; white-space:pre-wrap; word-wrap:break-word;}
+.follow {clear:both; margin-top:1em; font-size:18px;}
+.follow span {font-weight:bold;}
+
+#index .header {padding:0; border:0; margin-bottom:40px;}
+#index ul {list-style:none; padding:0; margin:0; text-align:center;}
+#index li {padding:0; margin:0.5em 0; font-size:18px; font-weight:bold;}
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+== PSEUDO BACKGROUND CROP
+** ---------------------------------------------------------------------------------------------------------------------------- */
+
+#crop .container {overflow:hidden;}
+
+/* SPRITE CONCEPT
+------------------------------------------------------------------------------------------------------------------------------- */
+
+#crop-sprite {display:block; overflow:hidden; width:50%; padding:10px 20px; border:2px solid #aaa; margin:40px auto 20px; 
+font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
+#crop-sprite:hover,
+#crop-sprite:focus,
+#crop-sprite:active {background:#f8f8f8;}
+
+/* Pseudo-element cropping bit */
+
+/* 
+ * Better legacy support (FF < 3.5) by using display-inline and negative margins to pull :before over padding 
+ * set on the parent to avoid potential text-decoration:underline ugliness
+ *
+ * You could also use the positioning and z-index hack to push the pseudo-element behind the content
+ * and treat it more like a normal background image instead of a DOM element.
+ */
+
+#crop-sprite:before {
+    content:'';
+    float:left;
+    width:60px;
+    height:60px;
+    margin:0 20px 0 0;
+    background:url(crop-sprite.png) 0 -60px;
+}
+
+#crop-sprite:hover:before,
+#crop-sprite:focus:before,
+#crop-sprite:active:before {background-position:-120px -60px;}
+
+
+/* GOOGLE EXAMPLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+#crop-google {float:left; width:160px; margin:20px 100px 20px 50px; font-family:Arial, sans-serif;}
+#crop-google h3 {width:160px; height:60px; overflow:hidden; margin:0 0 20px;}
+#crop-google h3:before {display:block; content:url(google-sprite.png); margin:-144px 0 0;} /* NIR stuff */
+#crop-google ul {width:155px; padding:0; margin:0; list-style:none;}
+#crop-google li {padding:0 0 2px 8px; margin:0 4px 0 0; font-size:15px; line-height:24px;}
+#crop-google .current {font-weight:bold;}
+#crop-google li a {color:#000; text-decoration:none;}
+#crop-google li a[href] {border:0; text-decoration:none; color:#2200C1;}
+#crop-google li a:hover,
+#crop-google li a:focus,
+#crop-google li a:active {text-decoration:none; background:transparent;}
+#crop-google li a[href]:hover,
+#crop-google li a[href]:focus,
+#crop-google li a[href]:active {text-decoration:underline;}
+
+/* Pseudo-element cropping bit */
+
+#crop-google li a:before, ieb {
+    content:'';
+    float:left;
+    width:19px;
+    height:19px;
+    margin:2px 5px 0 0;
+    padding:0 1px 0 0;
+    background:url(google-sprite.png) -20px -85px;
+}
+
+#crop-google .images a:before, ieb {background-position:-40px -85px;}
+#crop-google .videos a:before, ieb {background-position:-80px -85px;}
+#crop-google .news a:before, ieb {background-position:-120px -85px;}
+#crop-google .shopping a:before, ieb {background-position:-120px -105px;}
+#crop-google .books a:before, ieb {background-position:-40px -105px;}
+#crop-google .places a:before, ieb {background-position:-80px -105px;}
+#crop-google .blogs a:before, ieb {background-position:0 -105px;}
+#crop-google .realtime a:before, ieb {background-position:-40px -125px;}
+#crop-google .discussions a:before, ieb {background-position:0 -125px;}
+
+/* FACEBOOK EXAMPLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+#crop-facebook {float:left; margin:30px 50px 20px 0; font:11px/13px 'lucida grande', tahoma, verdana, arial, sans-serif;}
+#crop-facebook a {border:0; color:#3B5998; text-decoration:none;}
+#crop-facebook a:hover,
+#crop-facebook a:focus,
+#crop-facebook a:active {text-decoration:underline; background:transparent;}
+#crop-facebook .user {overflow:hidden; margin:0 0 10px;}
+#crop-facebook .user img {float:left; margin:0 8px 0 0;}
+#crop-facebook .user a {display:block;}
+#crop-facebook .fn {padding:3px 0; font-weight:bold;}
+#crop-facebook ul {width:180px; padding:0; margin:0; list-style:none;}
+#crop-facebook li a {display:block; padding:3px 8px 4px 6px; border-bottom:1px solid #fff;}
+#crop-facebook li a:hover,
+#crop-facebook li a:focus,
+#crop-facebook li a:active {text-decoration:none; background:#EFF2F7;}
+#crop-facebook li.current a {font-weight:bold; color:#333; background:#D8DFEA;}
+
+/* Pseudo-element cropping bit */
+
+#crop-facebook li a:before, ieb {
+    content:'';
+    float:left;
+    width:16px;
+    height:16px;
+    margin:0 6px 0 0;
+    background:url(facebook-sprite.png);
+}
+
+#crop-facebook .messages a:before, ieb {background-position:0 -16px;;}
+#crop-facebook .events a:before, ieb {background-position:0 -32px;}
+#crop-facebook .friends a:before, ieb {background-position:0 -48px;}
+#crop-facebook .create-group a:before, ieb {background-position:0 -64px;}
+#crop-facebook .notes a:before, ieb {background-position:0 -80px;}
+#crop-facebook .photos a:before, ieb {background-position:0 -96px;}
+#crop-facebook .adverts a:before, ieb {background-position:0 -112px;}
+#crop-facebook .links a:before, ieb {background-position:0 -128px;}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container header">
+    <header>
+        <hgroup>
+            <h1>Pseudo background-crop</h1>
+            <h2>Part of <a href="http://nicolasgallagher.com/css-background-image-hacks/">CSS background image hacks</a></h2>
+        </hgroup>
+
+    </header>
+</div>
+
+<div class="container content">
+    <p><em>Known support</em>: Firefox 3.5+, Chrome 3+, Safari 3+, Opera 9+, IE 8+.</p>
+    <p>Each example uses one sprite and semantic markup. The sprites are cropped using a CSS pseudo-element. When combined with the <a href="position.html">pseudo background-position</a> hack it can be used to crop images that are positioned behind an element's content.</p>
+
+    <div id="crop-google">
+        <h3>Google</h3>
+        <ul>
+            <li class="everything current"><a>Everything</a></li>
+            <li class="images"><a href="#non">Images</a></li>
+            <li class="videos"><a href="#non">Videos</a></li>
+
+            <li class="news"><a href="#non">News</a></li>
+            <li class="shopping"><a href="#non">Shopping</a></li>
+            <li class="books"><a href="#non">Books</a></li>
+            <li class="places"><a href="#non">Places</a></li>
+            <li class="blogs"><a href="#non">Blogs</a></li>
+            <li class="realtime"><a href="#non">Realtime</a></li>
+
+            <li class="discussions"><a href="#non">Discussions</a></li>
+        </ul>
+    </div>
+    
+    <div id="crop-facebook">
+        <div class="user">
+            <img src="avatar.jpg" alt="">
+            <a class="fn" href="#non">Jeffery Lebowski</a>
+            <a class="edit-profile" href="#non">Edit my profile</a>
+
+        </div>
+        <ul>
+            <li class="news current"><a href="#non">News Feed</a></li>
+            <li class="messages"><a href="#non">Messages</a></li>
+            <li class="events"><a href="#non">Events</a></li>
+            <li class="friends"><a href="#non">Friends</a></li>
+            <li class="create-group"><a href="#non">Create group</a></li>
+
+            <li class="notes"><a href="#non">Notes</a></li>
+            <li class="photos"><a href="#non">Photos</a></li>
+            <li class="adverts"><a href="#non">Adverts and Pages</a></li>
+            <li class="links"><a href="#non">Links</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container footer">
+    <p>Read the article: <a href="http://nicolasgallagher.com/css-background-image-hacks/">CSS background image hacks</a>.</p>
+    <p class="follow">By Nicolas Gallagher: <a href="http://twitter.com/necolas">@necolas</a>.</p>
+</div>
+
+<script type="text/javascript">
+(function(){function b(a){if(a=='""'||a=="''"||a==null){a=""}else{a=a.substring(0,a.length-1).substring(1)}return a}function a(a,b,c,d){if($(a).hasClass(d)){if(c){var e=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").css(b).html(c);var f=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").attr("style",e+";"+f)}else{var e=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").css(b);var f=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").attr("style",e+";"+f)}}else{$(a).addClass(d);var g=$(document.createElement(d+"e")).css(b).append(document.createTextNode(c));if(d=="ieb"){$(a).prepend(g)}else{$(a).append(g)}}}var c=document.styleSheets;for(var d=0,e=c.length;d<e;d++){var f=c[d].rules;for(var g=0,h=f.length;g<h;g++){if(f[g].selectorText.indexOf("ieb")==0){var i=g;var j=f[--i].selectorText;j=/(.+):un/.exec(j)[1];var k=f[g].style.content;k=b(k);a(j,f[g].style,k,"ieb")}else if(f[g].selectorText.indexOf("iea")==0){var i=g;var j=f[--i].selectorText;j=/(.+):un/.exec(j)[1];var k=f[g].style.content;k=b(k);a(j,f[g].style,k,"iea")}}}})()</script>
+</body>
+</html>
