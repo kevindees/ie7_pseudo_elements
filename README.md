@@ -8,7 +8,7 @@ If you feel you can hep with this project hit me up here or on twitter as @kevin
 
 Using
 ======
-- Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
+- Add "> iea" or "> ieb" as a new selector after pseudo-element in your CSS rule.
 - iea is for selectors ending in :after or ::after
 - ieb is for selectors ending in :before or ::before
 - Then add the script to the bottom of your site before the &lt;/body&gt; tag.
@@ -17,8 +17,8 @@ Example
 ======
 
 <pre>
-.more:before, ieb { ... }
-.more:after, iea { ... }
+.more:before, .more > ieb { ... }
+.more:after, .more > iea { ... }
 </pre>
 
 
@@ -53,8 +53,8 @@ Example Site
 &lt;meta charset="UTF-8"&gt;
 &lt;title&gt;My Site&lt;/title&gt;
 &lt;style type="text/css"&gt;
-.more p:before, ieb, .more p:after, iea { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
-.more p:after, iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
+.more p:before, .more p > ieb, .more p:after, .more p > iea { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
+.more p:after, .more p > iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
 &lt;/style&gt;
 &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;

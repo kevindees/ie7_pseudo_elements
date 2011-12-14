@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Demo: Pseudo background-crop &mdash; Nicolas Gallagher</title>
     <meta name="description" content="Crop background image sprites using CSS pseudo-elements and semantic HTML">
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 
     <style rel="stylesheet" type="text/css">
     /* ------------------------------------------
@@ -104,25 +104,26 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
 
 /* Pseudo-element cropping bit */
 
-#crop-google li a:before, ieb {
+#crop-google li a:before, #crop-google li a > ieb {
     content:'';
     float:left;
     width:19px;
     height:19px;
     margin:2px 5px 0 0;
     padding:0 1px 0 0;
-    background:url(google-sprite.png) -20px -85px;
+    background: url(google-sprite.png) -20px -85px;
 }
 
-#crop-google .images a:before, ieb {background-position:-40px -85px;}
-#crop-google .videos a:before, ieb {background-position:-80px -85px;}
-#crop-google .news a:before, ieb {background-position:-120px -85px;}
-#crop-google .shopping a:before, ieb {background-position:-120px -105px;}
-#crop-google .books a:before, ieb {background-position:-40px -105px;}
-#crop-google .places a:before, ieb {background-position:-80px -105px;}
-#crop-google .blogs a:before, ieb {background-position:0 -105px;}
-#crop-google .realtime a:before, ieb {background-position:-40px -125px;}
-#crop-google .discussions a:before, ieb {background-position:0 -125px;}
+#crop-google .images a:before, #crop-google .images a > ieb {background-position:-40px -85px;}
+#crop-google .videos a:before, #crop-google .videos  a > ieb {background-position:-80px -85px;}
+
+#crop-google .news a:before, #crop-google .news a > ieb {background-position:-120px -85px;}
+#crop-google .shopping a:before, #crop-google .shopping a > ieb {background-position:-120px -105px;}
+#crop-google .books a:before, #crop-google .books a > ieb {background-position:-40px -105px;}
+#crop-google .places a:before, #crop-google .places a > ieb {background-position:-80px -105px;}
+#crop-google .blogs a:before, #crop-google .blogs a > ieb {background-position:0 -105px;}
+#crop-google .realtime a:before, #crop-google .realtime a > ieb {background-position:-40px -125px;}
+#crop-google .discussions a:before, #crop-google .discussions a > ieb {background-position:0 -125px;}
 
 /* FACEBOOK EXAMPLE
 ------------------------------------------------------------------------------------------------------------------------------- */
@@ -145,7 +146,7 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
 
 /* Pseudo-element cropping bit */
 
-#crop-facebook li a:before, ieb {
+#crop-facebook li a:before, #crop-facebook li a > ieb {
     content:'';
     float:left;
     width:16px;
@@ -154,14 +155,15 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
     background:url(facebook-sprite.png);
 }
 
-#crop-facebook .messages a:before, ieb {background-position:0 -16px;;}
-#crop-facebook .events a:before, ieb {background-position:0 -32px;}
-#crop-facebook .friends a:before, ieb {background-position:0 -48px;}
-#crop-facebook .create-group a:before, ieb {background-position:0 -64px;}
-#crop-facebook .notes a:before, ieb {background-position:0 -80px;}
-#crop-facebook .photos a:before, ieb {background-position:0 -96px;}
-#crop-facebook .adverts a:before, ieb {background-position:0 -112px;}
-#crop-facebook .links a:before, ieb {background-position:0 -128px;}
+#crop-facebook .messages a:before, #crop-facebook .messages a > ieb {background-position:0 -16px;;}
+#crop-facebook .events a:before, #crop-facebook .events a > ieb {background-position:0 -32px;}
+#crop-facebook .friends a:before, #crop-facebook .friends a > ieb {background-position:0 -48px;}
+#crop-facebook .create-group a:before, #crop-facebook .create-group a > ieb {background-position:0 -64px;}
+#crop-facebook .notes a:before, #crop-facebook .notes a > ieb {background-position:0 -80px;}
+#crop-facebook .photos a:before, #crop-facebook .photos a > ieb {background-position:0 -96px;}
+#crop-facebook .adverts a:before, #crop-facebook .adverts a > ieb {background-position:0 -112px;}
+#crop-facebook .links a:before, #crop-facebook .links a > ieb {background-position:0 -128px;}
+*/
 
     </style>
 </head>
@@ -224,10 +226,57 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
 
 <div class="container footer">
     <p>Read the article: <a href="http://nicolasgallagher.com/css-background-image-hacks/">CSS background image hacks</a>.</p>
-    <p class="follow">By Nicolas Gallagher: <a href="http://twitter.com/necolas">@necolas</a>.</p>
+	<p class="follow">By Nicolas Gallagher: <a href="http://twitter.com/necolas">@necolas</a>.</p>
 </div>
 
 <script type="text/javascript">
-(function(){function b(a){if(a=='""'||a=="''"||a==null){a=""}else{a=a.substring(0,a.length-1).substring(1)}return a}function a(a,b,c,d){if($(a).hasClass(d)){if(c){var e=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").css(b).html(c);var f=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").attr("style",e+";"+f)}else{var e=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").css(b);var f=$(a+" > "+d+"e").attr("style");$(a+" > "+d+"e").attr("style",e+";"+f)}}else{$(a).addClass(d);var g=$(document.createElement(d+"e")).css(b).append(document.createTextNode(c));if(d=="ieb"){$(a).prepend(g)}else{$(a).append(g)}}}var c=document.styleSheets;for(var d=0,e=c.length;d<e;d++){var f=c[d].rules;for(var g=0,h=f.length;g<h;g++){if(f[g].selectorText.indexOf("ieb")==0){var i=g;var j=f[--i].selectorText;j=/(.+):un/.exec(j)[1];var k=f[g].style.content;k=b(k);a(j,f[g].style,k,"ieb")}else if(f[g].selectorText.indexOf("iea")==0){var i=g;var j=f[--i].selectorText;j=/(.+):un/.exec(j)[1];var k=f[g].style.content;k=b(k);a(j,f[g].style,k,"iea")}}}})()</script>
+(function() {
+    function set_element(rule, content, iee) {
+        if($(rule).hasClass(iee)) {
+            if(content) {
+                $(rule + ' > ' + iee).html(content);
+            }
+        }
+        else {
+            $(rule).addClass(iee);
+            if(iee == 'ieb') {
+                $(rule).each(function(index) {
+                    $(this).prepend($(document.createElement(iee)).append( content ));
+                });
+            }
+            else {
+              $(rule).each(function(index) {
+                    $(this).prepend($(document.createElement(iee)).append( content ));
+                });
+            }
+        }
+    }
+    
+    function make_content(content) {
+        if(content == "\"\"" || content == "\'\'" || content == null) {
+        content = ''; } else {
+        content = content.substring(0, content.length-1).substring(1);
+        document.createTextNode(content); }
+        return content;
+    }
+    
+    var css = document.styleSheets;
+    for(var i = 0, j = css.length; i < j; i++) {
+        var rules = css[i].rules;
+        for(var x = 0, y = rules.length; x < y; x++) {
+            var selector = rules[x].selectorText;
+            if(selector.indexOf("> ieb") > 0 || selector.indexOf("> iea") > 0) {
+                var regex = /\>\sie[ab]/g;
+                var ruleStr = selector.replace(regex, '');
+                var content = rules[x].style.content;
+                content = make_content(content);
+                if(selector.indexOf("> ieb") > 0) { var iee = "ieb" }
+                else { var iee = 'iea'}
+                set_element(ruleStr, content, iee);
+            }
+        }
+    }
+})();
+</script>
 </body>
 </html>
