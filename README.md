@@ -19,6 +19,7 @@ Example
 <pre>
 .more:before, .more > ieb { ... }
 .more:after, .more > iea { ... }
+.more:hover:after, .more:hover > iea { ... }
 </pre>
 
 
@@ -29,7 +30,7 @@ Basic
 ===
 - The less CSS rules you make the faster the script runs
 - This is for IE7 only! IE6 is not worth the pain.
-- Requires jQuery 1.6+
+- Requires jQuery 1.6+ (not tested past 1.6)
 
 Cons
 ===
@@ -40,6 +41,8 @@ Pros
 - Content property (is supported)
 - You can use :after and :before for basic enhancement
 - You can use CSS Castcading for specificity (selector specificity should work now)
+- You can use :hover
+- You can use url() (buggy can not use '' or "" in url)
 
 Example Site
 ======

@@ -22,9 +22,14 @@
     
     function make_content(content) {
         if(content == "\"\"" || content == "\'\'" || content == null) {
-        content = ''; } else {
-        content = content.substring(0, content.length-1).substring(1);
-        document.createTextNode(content); }
+            content = ''; }
+        else if(content.indexOf('url') == 0) {
+            content = "<img src='"+content.replace(/url\(/g, '').replace(/\)/, '')+"' />";
+        }
+        else {
+            content = content.substring(0, content.length-1).substring(1);
+            document.createTextNode(content);
+        }
         return content;
     }
     
@@ -35,7 +40,7 @@
             var selector = rules[x].selectorText;
             if(selector.indexOf("> ieb") > 0 || selector.indexOf("> iea") > 0) {
                 var regex = /\>\sie[ab]/g;
-                var ruleStr = selector.replace(regex, '');
+                var ruleStr = selector.replace(regex, '').replace(/\:[a-z]*/g, '');
                 var content = rules[x].style.content;
                 content = make_content(content);
                 if(selector.indexOf("> ieb") > 0) { var iee = "ieb" }

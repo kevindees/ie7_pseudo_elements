@@ -70,7 +70,7 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
  * and treat it more like a normal background image instead of a DOM element.
  */
 
-#crop-sprite:before {
+#crop-sprite:before, #crop-sprite > ieb {
     content:'';
     float:left;
     width:60px;
@@ -79,9 +79,9 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
     background:url(crop-sprite.png) 0 -60px;
 }
 
-#crop-sprite:hover:before,
-#crop-sprite:focus:before,
-#crop-sprite:active:before {background-position:-120px -60px;}
+#crop-sprite:hover:before, #crop-sprite:hover > ieb, 
+#crop-sprite:focus:before, #crop-sprite:focus > ieb,
+#crop-sprite:active:before, #crop-sprite:active > ieb {background-position:-120px -60px;}
 
 
 /* GOOGLE EXAMPLE
@@ -89,7 +89,7 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
 
 #crop-google {float:left; width:160px; margin:20px 100px 20px 50px; font-family:Arial, sans-serif;}
 #crop-google h3 {width:160px; height:60px; overflow:hidden; margin:0 0 20px;}
-#crop-google h3:before {display:block; content:url(google-sprite.png); margin:-144px 0 0;} /* NIR stuff */
+#crop-google h3:before, #crop-google h3 > ieb {display:block; content:url(google-sprite.png); margin:-144px 0 0;} /* NIR stuff */
 #crop-google ul {width:155px; padding:0; margin:0; list-style:none;}
 #crop-google li {padding:0 0 2px 8px; margin:0 4px 0 0; font-size:15px; line-height:24px;}
 #crop-google .current {font-weight:bold;}
@@ -184,6 +184,8 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
     <p><em>Known support</em>: Firefox 3.5+, Chrome 3+, Safari 3+, Opera 9+, IE 8+.</p>
     <p>Each example uses one sprite and semantic markup. The sprites are cropped using a CSS pseudo-element. When combined with the <a href="position.html">pseudo background-position</a> hack it can be used to crop images that are positioned behind an element's content.</p>
 
+    <p><a href="#non" id="crop-sprite">text content</a></p>
+
     <div id="crop-google">
         <h3>Google</h3>
         <ul>
@@ -254,9 +256,14 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
     
     function make_content(content) {
         if(content == "\"\"" || content == "\'\'" || content == null) {
-        content = ''; } else {
-        content = content.substring(0, content.length-1).substring(1);
-        document.createTextNode(content); }
+            content = ''; }
+        else if(content.indexOf('url') == 0) {
+            content = "<img src='"+content.replace(/url\(/g, '').replace(/\)/, '')+"' />";
+        }
+        else {
+            content = content.substring(0, content.length-1).substring(1);
+            document.createTextNode(content);
+        }
         return content;
     }
     
@@ -267,7 +274,7 @@ font:bold 30px/60px Arial, sans-serif; color:#000; background:#fefefe;}
             var selector = rules[x].selectorText;
             if(selector.indexOf("> ieb") > 0 || selector.indexOf("> iea") > 0) {
                 var regex = /\>\sie[ab]/g;
-                var ruleStr = selector.replace(regex, '');
+                var ruleStr = selector.replace(regex, '').replace(/\:[a-z]*/g, '');
                 var content = rules[x].style.content;
                 content = make_content(content);
                 if(selector.indexOf("> ieb") > 0) { var iee = "ieb" }
