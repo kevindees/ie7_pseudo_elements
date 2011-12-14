@@ -41,7 +41,7 @@ Pros
 ===
 - Content property (is supported)
 - You can use :after and :before for basic enhancement
-- You can use CSS Castcading for specificity (selector specificity not supported yet)
+- You can use CSS Castcading for specificity (selector specificity should work now)
 
 Example Site
 ======
