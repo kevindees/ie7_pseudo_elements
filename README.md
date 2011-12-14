@@ -33,8 +33,6 @@ Basic
 
 Cons
 ===
-- You can't use a -> : char outside of the :after or :before in target selector yet
-- You can use selectors like :hover yet
 - You can't stack pseudo-elements yet
 
 Pros
