@@ -14,7 +14,7 @@
             }
             else {
               $(rule).each(function(index) {
-                    $(this).prepend($(document.createElement(iee)).append( content ));
+                    $(this).append($(document.createElement(iee)).append( content ));
                 });
             }
         }
@@ -39,7 +39,7 @@
         for(var x = 0, y = rules.length; x < y; x++) {
             var selector = rules[x].selectorText;
             if(selector.indexOf("> ieb") > 0 || selector.indexOf("> iea") > 0) {
-                var regex = /\>\sie[ab]/g;
+                var regex = /\>\s?ie[ab]/g;
                 var ruleStr = selector.replace(regex, '').replace(/\:[a-z]*/g, '');
                 var content = rules[x].style.content;
                 content = make_content(content);
