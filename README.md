@@ -4,11 +4,11 @@ Created by [Kevin Dees](http://kevindees.cc)
 
 Becuase IE7 is going to be around for some time. This script was made to give us just a little pseudo-element support until IE7 goes away.
 
-If you feel you can hep with this project hit me up here or on twitter as @kevindees. Enjoy!
+If you feel you can help with this project hit me up here or on twitter as @kevindees. Enjoy!
 
 Using
 ======
-- Add "iea" or "ieb" as a new selector after pseudo-element in your CSS rule.
+- Add "> iea" or "> ieb" as a new selector after pseudo-element in your CSS rule.
 - iea is for selectors ending in :after or ::after
 - ieb is for selectors ending in :before or ::before
 - Then add the script to the bottom of your site before the &lt;/body&gt; tag.
@@ -17,8 +17,9 @@ Example
 ======
 
 <pre>
-.more:before, ieb { ... }
-.more:after, iea { ... }
+.more:before, .more > ieb { ... }
+.more:after, .more > iea { ... }
+.more:hover:after, .more:hover > iea { ... }
 </pre>
 
 
@@ -29,12 +30,10 @@ Basic
 ===
 - The less CSS rules you make the faster the script runs
 - This is for IE7 only! IE6 is not worth the pain.
-- Requires jQuery 1.6+
+- Requires jQuery 1.6+ (not tested past 1.6)
 
 Cons
 ===
-- You can't use a -> : char outside of the :after or :before in target selector yet
-- You can use selectors like :hover yet
 - You can't stack pseudo-elements yet
 - Because CSS is added inline you can use relative paths for images and urls
 
@@ -42,7 +41,9 @@ Pros
 ===
 - Content property (is supported)
 - You can use :after and :before for basic enhancement
-- You can use CSS Castcading for specificity (selector specificity not supported yet)
+- You can use CSS Castcading for specificity (selector specificity should work now)
+- You can use :hover
+- You can use url() (buggy can not use '' or "" in url)
 
 Example Site
 ======
@@ -54,8 +55,8 @@ Example Site
 &lt;meta charset="UTF-8"&gt;
 &lt;title&gt;My Site&lt;/title&gt;
 &lt;style type="text/css"&gt;
-.more p:before, ieb, .more p:after, iea { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
-.more p:after, iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
+.more p:before, .more p > ieb, .more p:after, .more p > iea { content: 'me'; background: #f00; width: 10px; height: 10px; display: block; }
+.more p:after, .more p > iea { content: 'you'; background: #ccc; width: 15px; height: 15px; display: block;}
 &lt;/style&gt;
 &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
