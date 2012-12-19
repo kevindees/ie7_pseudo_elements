@@ -2,7 +2,7 @@
 
 Created by [Kevin Dees](http://kevindees.cc)
 
-License: http://creativecommons.org/licenses/by/3.0/
+License: none (public domain)
 
 Because IE7 is going to be around for some time. This script was made to give us just a little pseudo-element support until IE7 goes away.
 

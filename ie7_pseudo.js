@@ -1,6 +1,6 @@
 /*
 Created by Kevin Dees
-License http://creativecommons.org/licenses/by/3.0/
+License: none (public domain)
 */
 
 (function() {
