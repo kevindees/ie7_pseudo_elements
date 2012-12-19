@@ -2,7 +2,9 @@
 
 Created by [Kevin Dees](http://kevindees.cc)
 
-Becuase IE7 is going to be around for some time. This script was made to give us just a little pseudo-element support until IE7 goes away.
+License: http://creativecommons.org/licenses/by/3.0/
+
+Because IE7 is going to be around for some time. This script was made to give us just a little pseudo-element support until IE7 goes away.
 
 If you feel you can help with this project hit me up here or on twitter as @kevindees. Enjoy!
 

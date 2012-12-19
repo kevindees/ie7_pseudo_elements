@@ -1,3 +1,8 @@
+/*
+Created by Kevin Dees
+License http://creativecommons.org/licenses/by/3.0/
+*/
+
 (function() {
     function set_element(rule, content, iee) {
         if($(rule).hasClass(iee)) {
@@ -19,7 +24,7 @@
             }
         }
     }
-    
+
     function make_content(content) {
         if(content == "\"\"" || content == "\'\'" || content == null) {
             content = ''; }
@@ -32,7 +37,7 @@
         }
         return content;
     }
-    
+
     var css = document.styleSheets;
     for(var i = 0, j = css.length; i < j; i++) {
         var rules = css[i].rules;
